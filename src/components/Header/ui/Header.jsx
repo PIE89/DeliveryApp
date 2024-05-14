@@ -5,12 +5,21 @@ import Basket from "@/assets/img/icons/basket.svg";
 import { Button } from "@/ui/Button";
 import { Icon } from "@/ui/Icon";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@/hooks/useTheme";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const onClick = () => {
     navigate("/");
+  };
+
+  const { toggleTheme, theme } = useTheme();
+
+  console.log(theme);
+
+  const toggleThemeHandler = () => {
+    toggleTheme();
   };
 
   return (
@@ -23,7 +32,7 @@ const Header = () => {
             <h3 className={cls.headerTitle}> Webcademy пицца</h3>
           </div>
           <div className={cls.buttons}>
-            <Icon Svg={Btn} />
+            <Icon Svg={Btn} clickable onClick={toggleThemeHandler} />
 
             <Button border className={cls.button}>
               <Icon Svg={Basket} />

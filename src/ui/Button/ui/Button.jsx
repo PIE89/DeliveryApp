@@ -11,8 +11,6 @@ const Button = (props) => {
 
   const typeClass = typeClasses[type] || typeClasses.normal;
 
-  console.log(typeClass);
-
   return (
     <button
       className={classNames(`button ${className}`, cls[typeClass], {
