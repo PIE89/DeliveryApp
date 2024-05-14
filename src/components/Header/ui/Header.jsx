@@ -29,7 +29,7 @@ const Header = () => {
           <div className={cls.logo}>
             <Icon Svg={LogoSvg} clickable onClick={onClick} />
 
-            <h3 className={cls.headerTitle}> Webcademy пицца</h3>
+            <h3 className={cls.headerTitle}>Webcademy пицца</h3>
           </div>
           <div className={cls.buttons}>
             <Icon Svg={Btn} clickable onClick={toggleThemeHandler} />
