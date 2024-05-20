@@ -10,7 +10,7 @@
 
 .normal {
   background-color: var(--button-bg-color);
-
+  border: 2px solid var(--icon-color);
   transition: all 0.3s ease-in;
 
   &:hover {

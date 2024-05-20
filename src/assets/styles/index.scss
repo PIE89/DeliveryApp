@@ -18,7 +18,7 @@ p {
   display: flex;
   flex-direction: column;
   background-color: var(--bg-color);
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .icon {
@@ -65,4 +65,11 @@ p {
   100% {
     transform: rotate(1800deg);
   }
+}
+
+// Error
+.error {
+  text-align: center;
+  color: var(--primary-color);
+  font: var(--font-l);
 }

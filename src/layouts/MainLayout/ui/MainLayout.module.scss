@@ -1,5 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .main {
-  flex-grow: 1;
+  flex-grow: 1; /* устанавливаем растягиваемость main на всю доступную высоту */
 }
 
 .container {
