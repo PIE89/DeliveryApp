@@ -9,6 +9,7 @@ const CartItem = ({
   product = "",
   ingredients = [],
   description = "",
+  price = 0,
 }) => {
   const ingredientsInfo = ingredients.join(", ");
 
@@ -29,7 +30,7 @@ const CartItem = ({
           <Button border className={cls.button}>
             Выбрать
           </Button>
-          <span>От 0 Р</span>
+          <span>От {price} Р</span>
         </div>
       </div>
     </article>
