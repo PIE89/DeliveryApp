@@ -5,9 +5,10 @@ import {
   getPizzasErrors,
   getPizzasLoading,
 } from "@/redux/pizzas/selectors/pizzasSelectors";
-import { fetchPizzas } from "@/redux/pizzas/services/fetchPizzas";
-import { calcMinPrice } from "@/utils/calcMinPrice";
+import { fetchNextPizzasPage } from "@/redux/pizzas/services/fetchNextPizzasPage";
+import { calcMinPricePizzas } from "@/utils/calcMinPricePizzas";
 import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 
 const PizzaPage = () => {
@@ -16,15 +17,21 @@ const PizzaPage = () => {
   const loading = useSelector(getPizzasLoading);
   const dispatch = useDispatch();
 
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
   useEffect(() => {
-    dispatch(fetchPizzas());
-  }, [dispatch]);
+    dispatch(fetchNextPizzasPage());
+  }, [dispatch, inView]);
 
   if (error) {
     return <div>{error}</div>;
   }
 
   const item = pizzas.map((pizza) => {
+    let minPrice = calcMinPricePizzas(pizza.sizes, pizza.doughs);
+
     return (
       <CartItem
         key={pizza.id}
@@ -33,12 +40,17 @@ const PizzaPage = () => {
         name={pizza.name}
         product={pizza.product}
         ingredients={pizza.ingredients}
-        price={calcMinPrice(pizza.sizes, pizza.doughs)}
+        price={minPrice}
       />
     );
   });
 
-  return <ProductLayout header={"Пиццы"} item={item} />;
+  return (
+    <>
+      <ProductLayout header={"Пиццы"} item={item} />
+      {!loading && <div ref={ref}></div>}
+    </>
+  );
 };
 
 export default PizzaPage;

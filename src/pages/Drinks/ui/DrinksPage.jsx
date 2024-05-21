@@ -1,7 +1,53 @@
-// import cls from "./DrinksPage.module.scss";
+import { CartItem } from "@/components/CartItem";
+import { ProductLayout } from "@/layouts/ProductLayout";
+import {
+  getDrinks,
+  getDrinksErrors,
+  getDrinksLoading,
+} from "@/redux/drinks/selectors/drinksSelectors";
+import { fetchNextDrinksPage } from "@/redux/drinks/services/fetchNextDrinksPage";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { useDispatch, useSelector } from "react-redux";
 
 const DrinksPage = () => {
-  return <div>DrinksPage</div>;
+  const Drinks = useSelector(getDrinks);
+  const error = useSelector(getDrinksErrors);
+  const loading = useSelector(getDrinksLoading);
+  const dispatch = useDispatch();
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
+  useEffect(() => {
+    dispatch(fetchNextDrinksPage());
+  }, [dispatch, inView]);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  const item = Drinks.map((drink) => {
+    return (
+      <CartItem
+        key={drink.id}
+        id={drink.id}
+        photo={drink.photo}
+        name={drink.name}
+        product={drink.product}
+        ingredients={drink.ingredients}
+        price={drink.price}
+      />
+    );
+  });
+
+  return (
+    <>
+      <ProductLayout header={"Напитки"} item={item} />
+      {!loading && <div ref={ref}></div>}
+    </>
+  );
 };
 
 export default DrinksPage;

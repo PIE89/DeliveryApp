@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPizzas } from "../services/fetchPizzas";
+import { fetchSushi } from "../services/fetchSushi";
 
 const initialState = {
-  pizzas: [],
+  sushi: [],
   isLoading: false,
   errors: null,
   page: 0,
@@ -10,8 +10,8 @@ const initialState = {
   hasMore: true,
 };
 
-export const pizzasSlice = createSlice({
-  name: "pizzas",
+export const sushiSlice = createSlice({
+  name: "sushi",
   initialState,
   reducers: {
     setPage: (state, action) => {
@@ -19,24 +19,24 @@ export const pizzasSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchPizzas.pending, (state) => {
+    builder.addCase(fetchSushi.pending, (state) => {
       state.errors = null;
       state.isLoading = true;
     });
 
-    builder.addCase(fetchPizzas.fulfilled, (state, action) => {
+    builder.addCase(fetchSushi.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.pizzas = [...state.pizzas, ...action.payload];
+      state.sushi = [...state.sushi, ...action.payload];
       state.hasMore = action.payload.length >= state.limit;
     });
 
-    builder.addCase(fetchPizzas.rejected, (state, action) => {
+    builder.addCase(fetchSushi.rejected, (state, action) => {
       state.isLoading = false;
       state.errors = action.payload;
     });
   },
 });
 
-export const { actions: pizzasActions } = pizzasSlice;
+export const { actions: sushiActions } = sushiSlice;
 
-export const { reducer: pizzasReducer } = pizzasSlice;
+export const { reducer: sushiReducer } = sushiSlice;

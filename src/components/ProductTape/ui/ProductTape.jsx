@@ -1,7 +1,8 @@
+/* eslint-disable no-case-declarations */
 import { CartItem } from "@/components/CartItem";
 import cls from "./ProductTape.module.scss";
 import { productsName } from "@/const/const";
-import { calcMinPrice } from "@/utils/calcMinPrice";
+import { calcMinPricePizzas } from "@/utils/calcMinPricePizzas";
 
 const ProductTape = (props) => {
   const { title, products = [], isLoading = false, error = undefined } = props;
@@ -13,14 +14,10 @@ const ProductTape = (props) => {
   const items = products.map((el) => {
     const props = {
       key: el.id,
-      photo: el.photo,
+      id: el.id,
       name: el.name,
+      photo: el.photo,
       product: el.product,
-      description: el.description,
-      sizes: el.sizes,
-      doughs: el.doughs,
-      pieces: el.pieces,
-      price: el.price,
     };
 
     switch (el.product) {
@@ -29,21 +26,26 @@ const ProductTape = (props) => {
           <CartItem
             {...props}
             ingredients={el.ingredients}
-            price={calcMinPrice(el.sizes, el.doughs)}
+            price={calcMinPricePizzas(el.sizes, el.doughs)}
           />
         );
 
       case productsName.SUSHI:
+        const prices = el.pieces.map((el) => el.price);
+        const minPriceSushi = Math.min(...prices);
+
         return (
           <CartItem
             {...props}
             ingredients={el.ingredients}
-            price={calcMinPrice(el.pieces)}
+            price={minPriceSushi}
           />
         );
 
       case productsName.DRINKS:
-        return <CartItem {...props} price={el.price} />;
+        return (
+          <CartItem {...props} price={el.price} description={el.description} />
+        );
 
       default:
         null;
