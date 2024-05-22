@@ -1,5 +1,6 @@
 import { CartItem } from "@/components/CartItem";
 import { ProductLayout } from "@/layouts/ProductLayout";
+import { ProductLayoutSkeleton } from "@/layouts/ProductLayout/ui/ProductLayout";
 import {
   getPizzas,
   getPizzasErrors,
@@ -48,6 +49,7 @@ const PizzaPage = () => {
   return (
     <>
       <ProductLayout header={"Пиццы"} item={item} />
+      {loading && <ProductLayoutSkeleton />}
       {!loading && <div ref={ref}></div>}
     </>
   );
