@@ -5,7 +5,6 @@ import { productsName } from "@/const/const";
 import { calcMinPricePizzas } from "@/utils/calcMinPricePizzas";
 import { Skeleton } from "@/ui/Skeleton";
 
-
 export const getSkeletons = () => {
   return (
     <section className={cls.products}>

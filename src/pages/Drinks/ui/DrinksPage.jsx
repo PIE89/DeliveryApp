@@ -37,7 +37,7 @@ const DrinksPage = () => {
         photo={drink.photo}
         name={drink.name}
         product={drink.product}
-        ingredients={drink.ingredients}
+        description={drink.description}
         price={drink.price}
       />
     );

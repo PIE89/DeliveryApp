@@ -22,7 +22,7 @@ const CartItem = ({
           <p className={cls.title}>{name}</p>
 
           <span className={cls.text}>
-            {product === productsName.OTHERS ? description : ingredientsInfo}
+            {product === productsName.DRINKS ? description : ingredientsInfo}
           </span>
         </div>
 
