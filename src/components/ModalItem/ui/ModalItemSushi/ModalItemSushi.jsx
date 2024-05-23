@@ -6,11 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import cls from "./../ModalItem/ModalItem.module.scss";
 import { Button } from "@/ui/Button";
 import { ModalItemLayout } from "@/layouts/ModalItemLayout";
+import { useModalItemParams } from "../ModalItem/helper/useModalItemParams";
 
 const ModalItemSushi = (props) => {
   const { isOpen, product, price } = props;
 
   const dispatch = useDispatch();
+
+  const newParams = useModalItemParams();
 
   const sushiPieces = useSelector(getProductItemSushiPieces);
 
@@ -57,15 +60,7 @@ const ModalItemSushi = (props) => {
     </div>
   );
 
-  const newParams = {
-    id: product.id,
-    product: product.product,
-    name: product.name,
-    photo: product.photo,
-    price: price,
-  };
-
-  return <ModalItemLayout params={newParams} options={options} />;
+  return <ModalItemLayout price={price} params={newParams} options={options} />;
 };
 
 export { ModalItemSushi };

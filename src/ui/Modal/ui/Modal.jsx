@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import ReactModal from "react-modal";
 import cls from "./Modal.module.scss";
-import { useEffect, useState } from "react";
+import {  useLayoutEffect, useState } from "react";
 
 ReactModal.setAppElement("#root");
 
@@ -18,7 +18,7 @@ const Modal = (props) => {
 
   const [closing, setIsClosing] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isOpen) {
       setIsClosing(true);
     } else {
