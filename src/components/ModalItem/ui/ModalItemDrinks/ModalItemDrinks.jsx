@@ -10,7 +10,7 @@ const ModalItemDrinks = (props) => {
 
   const dispatch = useDispatch();
 
-  const newParams = useModalItemParams();
+  const params = useModalItemParams();
 
   useEffect(() => {
     if (isOpen) {
@@ -24,7 +24,7 @@ const ModalItemDrinks = (props) => {
     }
   }, [dispatch, isOpen, product]);
 
-  return <ModalItemLayout price={price} params={newParams} />;
+  return <ModalItemLayout price={price} params={params} />;
 };
 
 export { ModalItemDrinks };

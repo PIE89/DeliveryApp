@@ -16,7 +16,7 @@ const ModalItemPizza = (props) => {
 
   const dispatch = useDispatch();
 
-  const newParams = useModalItemParams();
+  const params = useModalItemParams();
 
   const pizzaSize = useSelector(getProductItemPizzaSize);
   const pizzaType = useSelector(getProductItemPizzaType);
@@ -93,6 +93,12 @@ const ModalItemPizza = (props) => {
       </div>
     </div>
   );
+
+  const newParams = {
+    ...params,
+    size: pizzaSize?.name,
+    type: pizzaType?.name,
+  };
 
   return <ModalItemLayout price={price} params={newParams} options={options} />;
 };

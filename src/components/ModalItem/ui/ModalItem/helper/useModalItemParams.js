@@ -9,5 +9,6 @@ export const useModalItemParams = () => {
     product: product.product,
     name: product.name,
     photo: product.photo,
+    count: 1,
   };
 };

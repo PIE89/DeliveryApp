@@ -13,7 +13,7 @@ const ModalItemSushi = (props) => {
 
   const dispatch = useDispatch();
 
-  const newParams = useModalItemParams();
+  const params = useModalItemParams();
 
   const sushiPieces = useSelector(getProductItemSushiPieces);
 
@@ -59,6 +59,11 @@ const ModalItemSushi = (props) => {
       </div>
     </div>
   );
+
+  const newParams = {
+    ...params,
+    pieces: sushiPieces?.name,
+  };
 
   return <ModalItemLayout price={price} params={newParams} options={options} />;
 };

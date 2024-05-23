@@ -6,9 +6,16 @@ import { Button } from "@/ui/Button";
 import { Icon } from "@/ui/Icon";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/hooks/useTheme";
+import { Modal } from "@/ui/Modal";
+import { useState } from "react";
+import { BasketItem } from "@/components/BasketItem";
 
 const Header = () => {
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClick = () => setIsOpen((prev) => !prev);
 
   const onClick = () => {
     navigate("/");
@@ -21,25 +28,48 @@ const Header = () => {
   };
 
   return (
-    <header className={cls.header}>
-      <div className={cls.container}>
-        <div className={cls.content}>
-          <div className={cls.logo}>
-            <Icon Svg={LogoSvg} clickable onClick={onClick} />
+    <>
+      <header className={cls.header}>
+        <div className={cls.container}>
+          <div className={cls.content}>
+            <div className={cls.logo}>
+              <Icon Svg={LogoSvg} clickable onClick={onClick} />
 
-            <h3 className={cls.headerTitle}>Webcademy пицца</h3>
-          </div>
-          <div className={cls.buttons}>
-            <Icon Svg={Btn} clickable onClick={toggleThemeHandler} />
+              <h3 className={cls.headerTitle}>Webcademy пицца</h3>
+            </div>
+            <div className={cls.buttons}>
+              <Icon Svg={Btn} clickable onClick={toggleThemeHandler} />
 
-            <Button border className={cls.button}>
-              <Icon Svg={Basket} />
-              <span>0 ₽</span>
-            </Button>
+              <Button onClick={handleClick} border className={cls.button}>
+                <Icon Svg={Basket} />
+                <span>0 ₽</span>
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <Modal
+        type={"rightModal"}
+        width={420}
+        height={"100%"}
+        scroll={"auto"}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      >
+        <div className={cls.body}>
+          <BasketItem />
+
+          <div className={cls.footer}>
+            <div className={cls.totalPrice}>
+              <span>Итого: 0 ₽</span>
+            </div>
+
+            <Button border >Оформить заказ</Button>
+          </div>
+        </div>
+      </Modal>
+    </>
   );
 };
 
