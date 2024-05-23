@@ -1,6 +1,8 @@
 import { Button } from "@/ui/Button";
 import cls from "./CartItem.module.scss";
 import { productsName } from "@/const/const";
+import { useDispatch } from "react-redux";
+import { fetchProductItem } from "@/redux/productItem/services/fetchProductItem";
 
 const CartItem = ({
   id,
@@ -10,11 +12,24 @@ const CartItem = ({
   ingredients = [],
   description = "",
   price = 0,
+  handleClick,
 }) => {
   const ingredientsInfo = ingredients.join(", ");
 
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    handleClick();
+    dispatch(
+      fetchProductItem({
+        id: id,
+        product: product,
+      })
+    );
+  };
+
   return (
-    <article className={cls.card} key={id}>
+    <article className={cls.card}>
       <img src={photo} alt="photo" className={cls.img} />
 
       <div className={cls.body}>
@@ -27,7 +42,7 @@ const CartItem = ({
         </div>
 
         <div className={cls.footer}>
-          <Button border className={cls.button}>
+          <Button onClick={onClick} border className={cls.button}>
             Выбрать
           </Button>
           <span>От {price} Р</span>

@@ -1,8 +1,8 @@
 .clear {
-  background-color: var(--primary-color);
+  color: var(--primary-color);
   height: 50px;
 
-  &:active {
+  &.active {
     background: var(--icon-color);
     color: #ffffff;
   }

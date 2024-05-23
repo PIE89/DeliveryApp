@@ -4,6 +4,8 @@ import cls from "./ProductTape.module.scss";
 import { productsName } from "@/const/const";
 import { calcMinPricePizzas } from "@/utils/calcMinPricePizzas";
 import { Skeleton } from "@/ui/Skeleton";
+import { useContext } from "react";
+import { LayoutContext } from "@/provider/LayoutContextProvider";
 
 export const getSkeletons = () => {
   return (
@@ -24,6 +26,8 @@ export const getSkeletons = () => {
 const ProductTape = (props) => {
   const { title, products = [], isLoading = false, error = undefined } = props;
 
+  const { handleClick } = useContext(LayoutContext);
+
   if (isLoading) {
     return getSkeletons();
   }
@@ -35,6 +39,7 @@ const ProductTape = (props) => {
       name: el.name,
       photo: el.photo,
       product: el.product,
+      handleClick: handleClick,
     };
 
     switch (el.product) {

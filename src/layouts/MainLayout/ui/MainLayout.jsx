@@ -4,9 +4,14 @@ import { Header } from "@/components/Header/index";
 import { useTheme } from "@/hooks/useTheme";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { ModalItem } from "@/components/ModalItem";
+import { useContext } from "react";
+import { LayoutContext } from "@/provider/LayoutContextProvider";
 
 const MainLayout = () => {
   const { theme } = useTheme();
+
+  const { isOpen, setIsOpen } = useContext(LayoutContext);
 
   return (
     <div id="app" className={`app ${theme}`}>
@@ -23,6 +28,8 @@ const MainLayout = () => {
       </main>
 
       <Footer />
+
+      <ModalItem isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
 };
