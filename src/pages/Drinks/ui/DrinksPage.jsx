@@ -1,13 +1,14 @@
 import { CartItem } from "@/components/CartItem";
 import { ProductLayout } from "@/layouts/ProductLayout";
 import { ProductLayoutSkeleton } from "@/layouts/ProductLayout/ui/ProductLayout";
+import { LayoutContext } from "@/provider/LayoutContextProvider";
 import {
   getDrinks,
   getDrinksErrors,
   getDrinksLoading,
 } from "@/redux/drinks/selectors/drinksSelectors";
 import { fetchNextDrinksPage } from "@/redux/drinks/services/fetchNextDrinksPage";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,6 +17,7 @@ const DrinksPage = () => {
   const error = useSelector(getDrinksErrors);
   const loading = useSelector(getDrinksLoading);
   const dispatch = useDispatch();
+  const { handleClick } = useContext(LayoutContext);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -39,6 +41,7 @@ const DrinksPage = () => {
         product={drink.product}
         description={drink.description}
         price={drink.price}
+        handleClick={handleClick}
       />
     );
   });

@@ -1,13 +1,14 @@
 import { CartItem } from "@/components/CartItem";
 import { ProductLayout } from "@/layouts/ProductLayout";
 import { ProductLayoutSkeleton } from "@/layouts/ProductLayout/ui/ProductLayout";
+import { LayoutContext } from "@/provider/LayoutContextProvider";
 import {
   getSushi,
   getSushiErrors,
   getSushiLoading,
 } from "@/redux/sushi/selectors/sushiSelectors";
 import { fetchNextSushiPage } from "@/redux/sushi/services/fetchNextSushiPage";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,6 +17,7 @@ const SushiPage = () => {
   const error = useSelector(getSushiErrors);
   const loading = useSelector(getSushiLoading);
   const dispatch = useDispatch();
+  const { handleClick } = useContext(LayoutContext);
 
   const { ref, inView } = useInView({
     threshold: 0,
@@ -42,6 +44,7 @@ const SushiPage = () => {
         product={roll.product}
         ingredients={roll.ingredients}
         price={minPrice}
+        handleClick={handleClick}
       />
     );
   });
