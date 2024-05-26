@@ -7,14 +7,17 @@ import { Icon } from "@/ui/Icon";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@/hooks/useTheme";
 import { Modal } from "@/ui/Modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BasketItem } from "@/components/BasketItem";
 import { useSelector } from "react-redux";
 import { getBasketPrice } from "@/redux/basket/selectors/basketSelectors";
+import { LayoutContext } from "@/provider/LayoutContextProvider";
 
 const Header = () => {
   const navigate = useNavigate();
   const totalPrice = useSelector(getBasketPrice);
+
+  const { popup } = useContext(LayoutContext);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,6 +52,7 @@ const Header = () => {
               </Button>
             </div>
           </div>
+          {popup && <p className={cls.popup}>Товар был добавлен в корзину</p>}
         </div>
       </header>
 
