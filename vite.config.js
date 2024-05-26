@@ -14,7 +14,7 @@ export default defineConfig({
   },
 
   define: {
-    __API__: JSON.stringify("https://kiwi-quintessential-rainstorm.glitch.me/"),
+    __API__: JSON.stringify("https://rough-neat-crater.glitch.me/"),
   },
 
   resolve: {
