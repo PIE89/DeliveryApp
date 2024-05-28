@@ -17,11 +17,11 @@ const Footer = () => {
           <div className={cls.logo}>
             <Icon Svg={LogoSvg} clickable onClick={onClick} />
 
-            <h3 className={cls.footerTitle}>Webcademy пицца</h3>
+            <h3 className={cls.footerTitle}>PopovDelivery пицца</h3>
           </div>
 
           <span className={cls.copyright}>
-            © Copyright 2024 — Webcademy пицца
+            © Copyright 2024 — PopovDelivery пицца
           </span>
         </div>
       </div>
