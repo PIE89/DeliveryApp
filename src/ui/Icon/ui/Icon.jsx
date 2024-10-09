@@ -5,7 +5,7 @@ const Icon = (props) => {
 
   if (clickable) {
     return (
-      <button className={className} type="button" onClick={onClick}>
+      <button className={`icon ${className}`} type="button" onClick={onClick}>
         {icon}
       </button>
     );

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import ReactModal from "react-modal";
 import cls from "./Modal.module.scss";
-import {  useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 ReactModal.setAppElement("#root");
 

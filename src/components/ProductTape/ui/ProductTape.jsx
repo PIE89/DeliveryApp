@@ -1,4 +1,4 @@
-/* eslint-disable no-case-declarations */
+4/* eslint-disable no-case-declarations */
 import { CartItem, CartItemSkeleton } from "@/components/CartItem";
 import cls from "./ProductTape.module.scss";
 import { productsName } from "@/const/const";

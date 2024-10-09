@@ -12,6 +12,7 @@ const Navbar = () => {
     ));
   }, [navbarItemsList]);
 
+
   return <nav className={cls.navbar}>{itemsList}</nav>;
 };
 
